@@ -1,0 +1,1 @@
+it is imperative that the host/gateway ssh config file calls the correct .sh file on authorizedkeyscommand
