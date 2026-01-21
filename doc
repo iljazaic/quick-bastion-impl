@@ -1,1 +1,10 @@
 it is imperative that the host/gateway ssh config file calls the correct .sh file on authorizedkeyscommand
+
+
+ssh calls on bastion get directed to ./bastion/bastion.sh
+
+from bastion to gateway ssh calls get redirected to ./gateway/gateway.sh
+
+the rest are support scripts
+
+
