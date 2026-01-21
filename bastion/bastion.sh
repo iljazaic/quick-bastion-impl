@@ -2,10 +2,13 @@
 
 #$1 is username
 #$2 is pubkey provided
+set -euo pipefail
 
-KEY_FINGERPRINT="$(ssh-keygen -lf /dev/stdin | awk '{print $2}')"
+read -r key
+fp=$(printf '%s\n' "$key" | ssh-keygen -lf /dev/stdin | awk '{print $2}')
 
-a=$(./host_find.sh "$KEY_FINGERPRINT")
+ip=$(./host_find.sh "$fp")
 
-#returns an ip of the host in range of 192.168.111.x 
-echo $a
+printf 'command="ssh -W %s:22",no-pty,no-agent-forwarding %s\n' \
+  "$ip" \
+  "$key"
